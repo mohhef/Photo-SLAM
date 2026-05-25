@@ -1,0 +1,18 @@
+# Build artifacts from host builds (tied to host glibc / CUDA driver — must
+# be rebuilt inside the container anyway).
+build/
+**/build/
+lib/
+
+# LibTorch is large (4+ GB extracted) and downloaded fresh in the
+# Dockerfile to make the container hermetic. Keeping it out of the build
+# context shrinks the daemon upload time by ~4 GB.
+libtorch/
+libtorch.zip
+
+# Git internals.
+.git/
+
+# Photo-SLAM's runtime scratch (not needed at build time).
+**/__pycache__/
+*.pyc
